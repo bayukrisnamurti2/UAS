@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 # Membaca dataset dari file CSV
-df = pd.read_csv('C:\Customers.csv')
+df = pd.read_csv('Customers.csv')
 
 df = pd.DataFrame(df)
 

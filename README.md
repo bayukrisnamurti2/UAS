@@ -478,7 +478,8 @@ Masukan rename untuk mengganti namanya dari numerik
                          
                          `1:'standard',})`
 
-Masukan plot figure untuk menampilkannya
+## Evaluation
+Pada bagian ini saya menggunakan plot figure untuk menampilkannya
 
 `x_axis = df_segm_kmeans['Age']`
 
@@ -491,23 +492,6 @@ Masukan plot figure untuk menampilkannya
 `plt.title('Segmentation K-means')`
 
 `plt.show()`
-
-
-## Evaluation
-Pada bagian ini saya menggunakan F1 score sebagai metrik evaluasi
-- F1 Score: F1 score adalah rata-rata harmonis antara presisi dan recall. F1 score memberikan keseimbangan antara presisi dan recall. F1 score dihitung dengan menggunakan rumus sebagai berikut :
-
-`from sklearn.linear_model import LinearRegression`
-
-`lr = LinearRegression()`
-
-`lr.fit(x_train,y_train)`
-
-`predik = lr.predict(X_test)`
-
-`y = lr.score(X_test, y_test)`
-
-`print('Akurasi Model Regresi Linier : ', y)`
 
 ![Alt text](image15.png)
 

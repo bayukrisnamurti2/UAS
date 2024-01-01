@@ -34,7 +34,7 @@ Menjelaskan tujuan dari pernyataan masalah:
 
 
 ## Data Understanding
-Data yang digunakan dalam proyek ini adalah [Shop Customer Dataset]([https://www.kaggle.com/datasets/datascientistanna/customers-dataset/data]).
+Data yang digunakan dalam proyek ini adalah [Shop Customer Dataset](https://www.kaggle.com/datasets/datascientistanna/customers-dataset/data).
 
 
 #### Variabel-variabel pada Body Fat Prediction Dataset adalah sebagai berikut:

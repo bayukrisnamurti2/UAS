@@ -123,8 +123,11 @@ Selanjutnya masukkan seperti dibawah
 Masukkan untuk mengganti namanya
 
 `columns_to_update = {`
+
     `'Annual Income ($)': 'Annual Income',`
+    
     `'Spending Score (1-100)':` `'Spending Score'`
+    
 `}`
 
 `df = df.rename(columns=columns_to_update)`
@@ -142,10 +145,13 @@ Selanjutnya masukkan edanya
 `plt.subplots_adjust(hspace=0.5)`
 
 `for i, col in enumerate(numeric_cols):`
+
     `sns.histplot(data=df_numeric,` `x=col, bins=30, kde=True, ax=axes[i])`
+    
     `axes[i].set_title(f'Distribution of {col}')`
 
 `plt.suptitle('Distribution of Numeric Columns', y=0.95)`
+
 `plt.show()`
 
 ![Alt text](image.png)
@@ -157,8 +163,11 @@ Selanjutnya masukkan correlation matrix
 `correlation_matrix = numeric_cols.corr()`
 
 `plt.figure(figsize=(10, 8))`
+
 `sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)`
+
 `plt.title('Correlation Matrix Heatmap')`
+
 `plt.show()`
 
 ![Alt text](image2.png)
@@ -168,16 +177,25 @@ Untuk mengetahui gender proportion masukkan rumus ini
 `gender_counts = df['Gender'].value_counts()`
 
 `fig = px.pie(`
+
     `gender_counts,`
+    
     `values=gender_counts,`
+    
     `names=gender_counts.index,`
+    
     `labels={'index': 'Gender',` `'values': 'Count'},`
+    
     `title='Gender Proportion',`
+    
     `color=gender_counts.index,`
+    
     `color_discrete_map={'Male':` `'lightblue', 'Female':` `'lightcoral'},`
+    
 `)`
 
 `fig.update_traces(textinfo='percent+label', pull=[0.1, 0])`
+
 `fig.show()`
 
 ![Alt text](image3.png)
@@ -185,8 +203,11 @@ Untuk mengetahui gender proportion masukkan rumus ini
 Perbandingan pemasukan dan pengeluaaran
 
 `fig = px.scatter(df, x='Annual Income', y='Spending Score', color='Gender',`
+
                  `title='Income vs Spending Score',`
+                 
                  `labels={'Annual Income': 'Annual Income', 'Spending Score': 'Spending Score', 'Gender': 'Gender'})`
+                 
 `fig.show()`
 
 ![Alt text](image4.png)
@@ -194,10 +215,15 @@ Perbandingan pemasukan dan pengeluaaran
 Perbandingan pengeluaran score by umur grup
 
 `df['Age Group'] = pd.cut(df['Age'], bins=[0, 20, 30, 40, 50, 60, float('inf')],`
+
                          `labels=['0-20', '21-30', '31-40', '41-50', '51-60', '60+'])`
+                         
 `fig = px.box(df, x='Age Group', y='Spending Score', color='Gender',`
+
              `title='Spending Score by Age Group',`
+             
              `labels={'Age Group': 'Age Group', 'Spending Score': 'Spending Score', 'Gender': 'Gender'})`
+             
 `fig.show()`
 
 ![Alt text](image5.png)
@@ -205,8 +231,11 @@ Perbandingan pengeluaran score by umur grup
 Perbandingan pengeluaran score distribusi by pekerjaan
 
 `fig = px.violin(df, x='Profession', y='Spending Score', color='Gender',`
+
                 `title='Spending Score Distribution by Profession',`
+                
                 `labels={'Profession': 'Profession', 'Spending Score': 'Spending Score', 'Gender': 'Gender'})`
+                
 `fig.show()`
 
 ![Alt text](image6.png)
@@ -214,8 +243,11 @@ Perbandingan pengeluaran score distribusi by pekerjaan
 Perbandingan pengalaman kerja dan pengeluaran score
 
 `fig = px.scatter(df, x='Work Experience', y='Spending Score', color='Gender',`
+
                  `title='Work Experience vs Spending Score',`
+                 
                  `labels={'Work Experience': 'Work Experience', 'Spending Score': 'Spending Score', 'Gender': 'Gender'})`
+                 
 `fig.show()`
 
 ![Alt text](image7.png)
@@ -223,9 +255,13 @@ Perbandingan pengalaman kerja dan pengeluaran score
 Selanjutnya perbandingan rata-rata pengeluaran score by pengalaman kerja
 
 `avg_spending_by_experience = df.groupby('Work Experience')['Spending Score'].mean().reset_index()`
+
 `fig = px.line(avg_spending_by_experience, x='Work Experience', y='Spending Score',`
+
               `title='Average Spending Score by Work Experience',`
+              
               `labels={'Work Experience': 'Work Experience', 'Spending Score': 'Average Spending Score'})`
+              
 `fig.show()`
 
 ![Alt text](image8.png)
@@ -233,8 +269,11 @@ Selanjutnya perbandingan rata-rata pengeluaran score by pengalaman kerja
 Perbandingan ukuran keluarga dan pemasukan pertahun
 
 `fig = px.scatter(df, x='Family Size', y='Annual Income', color='Gender',`
+
                  `title='Family Size vs Annual Income',`
+                 
                  `labels={'Family Size': 'Family Size', 'Annual Income': 'Annual Income', 'Gender': 'Gender'})`
+                 
 `fig.show()`
 
 ![Alt text](image9.png)
@@ -242,8 +281,11 @@ Perbandingan ukuran keluarga dan pemasukan pertahun
 Perbandingan ukuran keluarga dan pengeluaran score
 
 `fig = px.scatter(df, x='Family Size', y='Spending Score', color='Gender',`
+
                  `title='Family Size vs Spending Score',`
+                 
                  `labels={'Family Size': 'Family Size', 'Spending Score': 'Spending Score', 'Gender': 'Gender'})`
+                 
 `fig.show()`
 
 ![Alt text](image10.png)
@@ -252,13 +294,9 @@ Perbandingan jenis kelamin distribusi bersama pekerjaan
 
 `custom_colors = {'Male': 'red', 'Female': 'blue'}`
 
-`fig = px.bar(`
-    `df,`
-    `x='Profession',`
-    `color='Gender',`
-    `barmode='group',`
-    `title='Gender Distribution Within Professions',`    `color_discrete_map=custom_colors,`
-`)`
+`fig = px.bar(df, x='Profession', color='Gender', barmode='group',`
+
+    `title='Gender Distribution Within Professions', color_discrete_map=custom_colors,)`
 
 `fig.show()`
 
@@ -267,6 +305,7 @@ Perbandingan jenis kelamin distribusi bersama pekerjaan
 Rata-rata pengeluaran score
 
 `average_spending_score = df['Spending Score'].mean()`
+
 `print(f"Average Spending Score: {average_spending_score:.2f}")`
 
 Distribusi pekerjaan
@@ -275,11 +314,17 @@ Distribusi pekerjaan
 
 `fig = px.bar(`
     `profession_counts,`
+    
     `x=profession_counts,`
+    
     `y=profession_counts.index,`
+    
     `orientation='h',`
+    
     `labels={'y': 'Profession', 'x': 'Count'},`
+    
     `title='Distribution of Professions',`
+    
 `)`
 
 `fig.show()`
@@ -289,8 +334,11 @@ Distribusi pekerjaan
 Pengeluaran score by pekerjaan
 
 `fig = px.box(df, x='Profession', y='Spending Score', color='Gender',`
+
              `title='Spending Score by Profession',`
+             
              `labels={'Profession': 'Profession', 'Spending Score': 'Spending Score', 'Gender': 'Gender'})`
+             
 `fig.show()`
 
 ![Alt text](image13.png)
@@ -298,12 +346,15 @@ Pengeluaran score by pekerjaan
 Masukkan ini untuk menargetkan umur
 
 `high_spending_age_group = df[df['Spending Score'] > df['Spending Score'].mean()]['Age Group'].mode().iloc[0]`
+
 `print(f"Targeting High-Spending Age Group: {high_spending_age_group}")`
 
 Masukkan ini untuk target promosi umur
 
 `gender_promotions = df.groupby('Gender')['Spending Score'].mean()`
+
 `target_gender = gender_promotions.idxmax()`
+
 `print(f"Targeting Promotions to Gender: {target_gender}")`
 
 Selanjutnya masukkan label labelnya
@@ -311,17 +362,23 @@ Selanjutnya masukkan label labelnya
 `df['IncomePerMember'] = df['Annual Income'] / df['Family Size']`
 
 `bins = [0, 20, 40, 60, 80, 100]`
+
 `labels = ['Very Low', 'Low', 'Moderate', 'High', 'Very High']`
+
 `df['SpendingScoreCategory'] = pd.cut(df['Spending Score'], bins=bins, labels=labels, right=False)`
 
 `bins = [0, 5, 10, 15, 20]`
+
 `labels = ['Entry', 'Mid', 'Senior', 'Expert']`
+
 `df['ExperienceLevel'] = pd.cut(df['Work Experience'], bins=bins, labels=labels, right=False)`
 
 `df['Income_Experience_Ratio'] = df['Annual Income'] / (1 + df['Work Experience'])`
 
 `bins_family = [0, 3, 5, float('inf')]`
+
 `labels_family = ['Small', 'Medium', 'Large']`
+
 `df['FamilySizeCategory'] = pd.cut(df['Family Size'], bins=bins_family, labels=labels_family, right=False)`
 
 Masukkan ini untuk melihat isinya
@@ -334,15 +391,23 @@ Waduh, ternyata proses nya banyak dan mari kita lanjutkan
 Sebelumnya mari kita masukkan label encodernya
 
 `label_encoder = LabelEncoder()`
+
 `df['Gender'] = label_encoder.fit_transform(df['Gender'])`
+
 `df['Profession'] = label_encoder.fit_transform(df['Profession'])`
+
 `df['Age Group'] = label_encoder.fit_transform(df['Age Group'])`
+
 `df['SpendingScoreCategory'] = label_encoder.fit_transform(df['SpendingScoreCategory'])`
+
 `df['ExperienceLevel'] = label_encoder.fit_transform(df['ExperienceLevel'])`
+
 `df['FamilySizeCategory'] = label_encoder.fit_transform(df['FamilySizeCategory'])`
 
 `numerical_cols = ['Work Experience', 'Family Size', 'IncomePerMember', 'Income_Experience_Ratio', 'Spending Score']`
+
 `scaler = StandardScaler()`
+
 `df[numerical_cols] = scaler.fit_transform(df[numerical_cols])`
 
 Selanjutnya masukkan ini untuk melihat isinya lagi
@@ -352,18 +417,27 @@ Selanjutnya masukkan ini untuk melihat isinya lagi
 Sekarang kita masukkan metode kmeansnya
 
 `wcss = []`
+
 `for i in range(1,11):`
+
     `kmeans = KMeans(n_clusters = i, init = 'k-means++', random_state = 42)`
+    
     `kmeans.fit(df)`
+    
     `wcss.append(kmeans.inertia_)`
 
 Sekarang untuk menampilkan kmeansnya
 
 `plt.figure(figsize = (10,8))`
+
 `plt.plot(range(1, 11), wcss, marker = 'o', linestyle = '--')`
+
 `plt.xlabel('Number of Clusters')`
+
 `plt.ylabel('WCSS')`
+
 `plt.title('K-means Clustering')`
+
 `plt.show()`
 
 ![Alt text](image14.png)
@@ -377,12 +451,15 @@ Untuk mengklusterkannya
 Masukan segmen kmeans untuk menganalisis
 
 `df_segm_kmeans = df.copy()`
+
 `df_segm_kmeans['Segment K-means'] = kmeans.labels_`
 
 `df_segm_analysis = df_segm_kmeans.groupby(['Segment K-means']).mean()`
+
 `df_segm_analysis`
 
 `df_segm_analysis['N Obs'] = df_segm_kmeans[['Segment K-means','Gender']].groupby(['Segment K-means']).count()`
+
 `df_segm_analysis['Prop Obs'] = df_segm_analysis['N Obs'] / df_segm_analysis['N Obs'].sum()`
 
 `df_segm_analysis`
@@ -390,21 +467,29 @@ Masukan segmen kmeans untuk menganalisis
 Masukan rename untuk mengganti namanya dari numerik
 
 `df_segm_analysis.rename({0:'well-off',`
+
                          `2:'fewer-opportunities',`
+                         
                          `1:'standard',})`
 
 `df_segm_kmeans['Labels'] = df_segm_kmeans['Segment K-means'].map({0:'well-off',`
+
                          `2:'fewer-opportunities',`
+                         
                          `1:'standard',})`
 
 Masukan plot figure untuk menampilkannya
 
 `x_axis = df_segm_kmeans['Age']`
+
 `y_axis = df_segm_kmeans['Annual Income']`
 
 `plt.figure(figsize=(10, 8))`
+
 `sns.scatterplot(x=x_axis, y=y_axis, hue=df_segm_kmeans['Labels'], palette=['g', 'r', 'c', 'm'])`
+
 `plt.title('Segmentation K-means')`
+
 `plt.show()`
 
 
